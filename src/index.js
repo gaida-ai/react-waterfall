@@ -37,6 +37,8 @@ const createStore: CreateStore = (
     const initializedMiddlewares = [...middlewares, ...defaultMiddlewares].map(middleware =>
       middleware({ initialState, actionsCreators }, self, actions))
 
+    state = self.state; // sync initialState
+
     provider = {
       setState: (state, callback) => self.setState(state, callback),
       initializedMiddlewares,
